@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inventory Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Predicted Inventory Needs for Tomorrow</h2>
+  <table>
+    <tr><th>Item</th><th>Predicted Units Needed</th></tr>
+    {% for name, prediction in predictions.items() %}
+      <tr>
+        <td>{{ name.title() }}</td>
+        <td>{{ prediction }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <br><a href="/">Back to Home</a>
+</body>
+</html>

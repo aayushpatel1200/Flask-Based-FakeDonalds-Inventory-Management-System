@@ -1,0 +1,10 @@
+name,quantity,price,units_per_box,critical_level
+burger bun,13,7.85,144,2
+small patty,1,12.29,72,4
+big patty,6,14.21,36,4
+cheese slices box,6,10.99,120,3
+ketchup packet,5,2.1,200,3
+mustard packet,1,1.88,180,2
+coffee packet,5,0.57,1,10
+cream,5,4.78,250,2
+sugar,0,2.5,500,1

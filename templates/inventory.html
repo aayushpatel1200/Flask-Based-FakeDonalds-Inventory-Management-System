@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inventory</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Current Inventory</h2>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Boxes</th>
+      <th>Box Price</th>
+      <th>Per Unit</th>
+    </tr>
+    {% for name, item in inventory.items() %}
+      <tr>
+        <td>{{ name.title() }}</td>
+        <td {% if item.quantity < item.critical_level %}class="low-stock"{% endif %}>
+          {{ item.quantity }}
+        </td>
+        <td>${{ '%.2f'|format(item.price) }}</td>
+        <td>${{ '%.3f'|format(item.per_unit_price) }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <br><a href="/">Back to Home</a>
+</body>
+</html>

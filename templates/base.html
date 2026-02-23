@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}FakeDonald's{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='mcdonalds-15-logo-png-transparent.png') }}" alt="Logo" class="logo">
+    <h1>FakeDonald's Inventory System</h1>
+  </div>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

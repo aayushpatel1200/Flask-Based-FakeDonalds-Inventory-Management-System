@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Place Order{% endblock %}
+{% block content %}
+
+<h2>Place Inventory Order</h2>
+
+{% if not submitted %}
+  <form method="POST">
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Current Boxes</th>
+        <th>Price per Box</th>
+        <th>Order Quantity</th>
+      </tr>
+      {% for name, item in inventory.items() %}
+      <tr>
+        <td>{{ name.title() }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ '%.2f'|format(item.price) }}</td>
+        <td>
+          <input type="number" name="{{ name }}" min="0" value="0">
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <input type="submit" value="Place Full Order">
+  </form>
+
+{% else %}
+  <h3>Order Summary</h3>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Boxes Ordered</th>
+      <th>Unit Price</th>
+      <th>Subtotal</th>
+    </tr>
+    {% for item in order_summary %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.qty }}</td>
+      <td>${{ '%.2f'|format(item.unit_price) }}</td>
+      <td>${{ '%.2f'|format(item.subtotal) }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <hr style="margin-top: 20px; margin-bottom: 10px;">
+  <p><strong>Subtotal:</strong> ${{ '%.2f'|format(total) }}</p>
+  <p><strong>GST (5%):</strong> ${{ '%.2f'|format(gst) }}</p>
+  <p><strong>Total Order Cost:</strong> <span style="font-weight: bold; font-size: 1.1em;">${{ '%.2f'|format(grand_total) }}</span></p>
+
+  <br><a href="/">Back to Home</a>
+{% endif %}
+
+{% endblock %}

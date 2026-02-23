@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log Waste</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Log Wasted Products</h2>
+  {% if done %}
+    <p><strong>Total Cost of Waste:</strong> ${{ '%.2f'|format(total_waste) }}</p>
+    <a href="/">Back to Home</a>
+  {% else %}
+    <form method="POST">
+      {% for name, item in inventory.items() %}
+        <label>{{ name.title() }} (Units Wasted):</label>
+        <input type="number" name="{{ name }}"><br><br>
+      {% endfor %}
+      <input type="submit" value="Submit Waste Log">
+    </form>
+    <br><a href="/">Back to Home</a>
+  {% endif %}
+</body>
+</html>

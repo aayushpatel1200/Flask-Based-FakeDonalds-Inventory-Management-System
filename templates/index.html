@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div style="display: flex; justify-content: space-between;">
+  <!-- Main Menu Section -->
+  <div style="flex: 2;">
+    <h2>Welcome</h2>
+    <p>This system helps you manage inventory, track stock levels, place supply orders, and log waste in a simple web interface.</p>
+
+    <h3>Main Menu</h3>
+    <ul>
+      <li><a href="/inventory">View Inventory & Stock</a></li>
+      <li><a href="/entry">Daily Inventory Entry</a></li>
+      <li><a href="/order">Place Order</a></li>
+      <li><a href="/waste">Log Wasted Products</a></li>
+      <li><a href="/predict">Predict Inventory (AI)</a></li>
+    </ul>
+  </div>
+
+  <!-- Low Stock Box -->
+  <div style="flex: 1; margin-left: 40px; background: #ffe6e6; padding: 20px; border-radius: 10px;">
+    <h3 style="color: #c0392b;">Low Stock Alerts</h3>
+    {% if low_stock %}
+      <ul>
+        {% for name, item in low_stock.items() %}
+          <li><strong>{{ name.title() }}</strong>: {{ item.quantity }} boxes left (critical: {{ item.critical_level }})</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>All items are sufficiently stocked</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
